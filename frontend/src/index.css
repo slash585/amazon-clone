@@ -147,10 +147,19 @@ a.brand {
   flex: 2 1 50rem;
 }
 
+.min-30 {
+  max-width: 30rem;
+}
+
 /* IMAGES */
 
 img {
   border-radius: 0.5rem;
+}
+
+img.small {
+  max-width: 5rem;
+  width: 100%;
 }
 
 img.medium {
