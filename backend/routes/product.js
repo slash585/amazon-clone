@@ -1,7 +1,7 @@
 const expressAsyncHandler = require('express-async-handler')
 const Product = require('../models/product')
 const data = require('../data')
-
+const bcrypt = require('bcryptjs')
 const router = require('express').Router()
 
 router.get('/', expressAsyncHandler(async(req,res)=>{
@@ -24,5 +24,7 @@ router.get('/:id',expressAsyncHandler(async(req,res,next)=>{
         next(e)
     }
 }))
+
+
 
 module.exports = router
