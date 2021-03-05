@@ -9,7 +9,8 @@ const initialState = {
         userInfo: localStorage.getItem('user-info') ? JSON.parse(localStorage.getItem('user-info')) : null
     },
     cart: {
-        cartItems: localStorage.getItem('cart-items') ? JSON.parse(localStorage.getItem('cart-items')) : []
+        cartItems: localStorage.getItem('cart-items') ? JSON.parse(localStorage.getItem('cart-items')) : [],
+        shippingAddress: localStorage.getItem('shippingAdress') ? JSON.parse(localStorage.getItem('shippingAdress')) : {}
     }
 }
 const reducer = combineReducers({

@@ -6,6 +6,7 @@ import SigninScreen from './views/signin-screen'
 import RegisterScreen from './views/register-screen'
 import { useDispatch, useSelector } from 'react-redux';
 import { signout } from './actions/user-actions';
+import ShippingAdressScreen from './views/shipping-adress-screen';
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
         <Route path="/product/:id" component={ProductScreen}></Route>
         <Route path="/signin" component={SigninScreen}></Route>
         <Route path="/register" component={RegisterScreen}></Route>
+        <Route path="/shipping" component={ShippingAdressScreen}></Route>
         <Route path="/" component={HomeScreen} exact></Route>
       </main>
       <footer className="row center">All right reserved</footer>
