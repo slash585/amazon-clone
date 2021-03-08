@@ -32,12 +32,12 @@ export default function PlaceOrderScreen(props) {
     dispatch(createOrder({ ...cart, orderItems: cart.cartItems }))
   }
 
-  useEffect(()=>{
-    if(success){
+  useEffect(() => {
+    if (success) {
       props.history.push(`/order/${order._id}`)
       dispatch({ type: ORDER_CREATE_RESET })
     }
-  },[dispatch, order, props.history, success])
+  }, [dispatch, order, props.history, success])
 
   return (
     <div>

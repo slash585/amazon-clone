@@ -4,6 +4,9 @@ import {
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
+  ORDER_DETAILS_FAIL,
+  ORDER_DETAILS_REQUEST,
+  ORDER_DETAILS_SUCCESS,
 } from "../constants/order-constants"
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -12,21 +15,44 @@ export const createOrder = (order) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState()
-    const { data } = await axios.post("http://localhost:5000/api/orders", order, {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    })
+    const { data } = await axios.post(
+      "http://localhost:5000/api/orders",
+      order,
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+    )
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data.order })
     dispatch({ type: CART_EMPTY })
     localStorage.removeItem("cart-items")
-  } catch (error) {
+  } catch (e) {
     dispatch({
       type: ORDER_CREATE_FAIL,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+        e.response && e.response.data.message
+          ? e.response.data.message
+          : e.message,
     })
+  }
+}
+
+export const detailsOrder = (orderId) => async (dispatch, getState) => {
+  dispatch({ type: ORDER_DETAILS_REQUEST, payload: orderId })
+  try {
+    const {
+      userSignin: { userInfo },
+    } = getState()
+    const { data } = await axios.get(`http://localhost:5000/api/orders/${orderId}`, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    dispatch({ type: ORDER_DETAILS_FAIL, payload: message })
   }
 }

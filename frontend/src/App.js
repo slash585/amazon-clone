@@ -9,6 +9,7 @@ import { signout } from './actions/user-actions';
 import ShippingAdressScreen from './views/shipping-adress-screen';
 import PaymentScreen from './views/payment-method-screen'
 import PlaceOrderScreen from './views/place-order-screen'
+import OrderScreen from './views/order-screen'
 
 function App() {
   const cart = useSelector(state => state.cart)
@@ -64,6 +65,7 @@ function App() {
         <Route path="/shipping" component={ShippingAdressScreen}></Route>
         <Route path="/payment" component={PaymentScreen}></Route>
         <Route path="/placeorder" component={PlaceOrderScreen}></Route>
+        <Route path="/order/:id" component={OrderScreen}></Route>
         <Route path="/" component={HomeScreen} exact></Route>
       </main>
       <footer className="row center">All right reserved</footer>
